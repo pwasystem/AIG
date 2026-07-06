@@ -1,0 +1,17 @@
+{
+    "workspace_name": "SISTEMA_PRIMORDIAL_IAG",
+    "version": "1.0.0",
+    "security_preset": "review_oriented",
+    "permissions": {
+        "disk_read": ["*"],
+        "disk_write": ["primordial_core/*", "primordial_memory_rag.json", "primordial_skills.md"],
+        "terminal_execution": true,
+        "mcp_tools_enabled": true
+    },
+    "agent_orchestration": {
+        "mode": "parallel_asymmetric",
+        "actor_model": "gemini-2.5-flash",
+        "critic_model": "gemini-2.5-pro",
+        "max_internal_loops": 3
+    }
+}

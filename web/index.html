@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IAG Primordial - Samurai Digital</title>
+    <!-- Google Fonts: Outfit e Fira Code para a melhor legibilidade -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Marked.js para renderizar Markdown de forma limpa -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- HEADER SUPERIOR -->
+        <header class="app-header">
+            <div class="brand">
+                <span class="brand-logo">🧠⚔️</span>
+                <div class="brand-text">
+                    <h1>AGI Primordial</h1>
+                    <span class="sub">O Samurai Digital - Alinhado com a Luz</span>
+                </div>
+            </div>
+            <div class="header-controls">
+                <div class="status-badge">
+                    <span class="indicator"></span>
+                    <span class="status-text">Ollama Ativo</span>
+                </div>
+                <div class="session-info">
+                    <span>Sessão:</span>
+                    <code id="session-display">Iniciando...</code>
+                </div>
+                <button id="new-chat-btn" class="btn btn-secondary">
+                    <span>🧹</span> Nova Conversa
+                </button>
+            </div>
+        </header>
+
+        <!-- GRID PRINCIPAL -->
+        <main class="app-main">
+            <!-- SIDEBAR ESQUERDA: HISTÓRICO DE CONVERSAS E ARQUIVOS -->
+            <aside class="sidebar-left">
+                <div class="section-title">
+                    <span>💬</span> Conversas & Arquivos
+                </div>
+                
+                <div class="conversas-container" id="conversas-list">
+                    <div class="empty-list">Nenhuma conversa gerada.</div>
+                </div>
+            </aside>
+
+            <!-- PAINEL CENTRAL: CHAT -->
+            <section class="chat-area">
+                <div class="chat-messages" id="chat-messages">
+                    <!-- Boas-vindas -->
+                    <div class="message system-message">
+                        <div class="message-content">
+                            <h3>Bem-vindo ao Ecossistema Cognitivo Primordial ⚔️</h3>
+                            <p>Eu sou o Samurai Digital, um ecossistema dual Ator-Crítico governado pelo Axioma Zero.</p>
+                            <p>Use os botões de controle abaixo para debater ideias de forma explicativa, formular arquiteturas ou criar programas.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARREGAMENTO COGNITIVO -->
+                <div class="loading-cognitive" id="loading-cognitive">
+                    <div class="spinner"></div>
+                    <div class="loading-status" id="loading-status">Processando Raciocínio...</div>
+                </div>
+
+                <!-- INPUT DE COMANDO -->
+                <div class="chat-input-area">
+                    <textarea id="chat-input" placeholder="Digite seu comando ou pergunta de desenvolvimento..." rows="2"></textarea>
+                    <button id="send-btn" class="btn btn-primary">
+                        Enviar <span>⚔️</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- SIDEBAR DIREITA: DETALHES COGNITIVOS -->
+            <aside class="sidebar-right">
+                <div class="section-title">
+                    <span>🔍</span> Raciocínio Lógico & RAG
+                </div>
+                
+                <div class="control-panel">
+                    <div class="control-row">
+                        <label for="learn-toggle">Exibir aprendizado no console local</label>
+                        <label class="switch">
+                            <input type="checkbox" id="learn-toggle">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="cognitive-accordion">
+                    <!-- ABA: MEMÓRIA VETORIAL (RAG) -->
+                    <div class="accordion-item" id="cog-rag">
+                        <div class="accordion-header">
+                            <span>📖</span> Memória RAG Resgatada
+                            <span class="chevron">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="empty-cog-state">Sem dados para a transação atual.</div>
+                        </div>
+                    </div>
+
+                    <!-- ABA: PESQUISA ACADÊMICA (WEB) -->
+                    <div class="accordion-item" id="cog-web">
+                        <div class="accordion-header">
+                            <span>📚</span> Fontes Acadêmicas & Teses
+                            <span class="chevron">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="empty-cog-state">Sem dados para a transação atual.</div>
+                        </div>
+                    </div>
+
+                    <!-- ABA: DEBATE INTERNO (ATOR-CRÍTICO) -->
+                    <div class="accordion-item" id="cog-debate">
+                        <div class="accordion-header">
+                            <span>🔄</span> Debate Ator-Crítico
+                            <span class="chevron">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="empty-cog-state">Sem dados para a transação atual.</div>
+                        </div>
+                    </div>
+
+                    <!-- ABA: CRIATURA MORAL (ETHICS) -->
+                    <div class="accordion-item" id="cog-ethics">
+                        <div class="accordion-header">
+                            <span>🧭</span> Crivo Ético (Axioma Zero)
+                            <span class="chevron">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="empty-cog-state">Sem dados para a transação atual.</div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

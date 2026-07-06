@@ -1,0 +1,9 @@
+├── .antigravity/
+│   └── config.json       # Configuração de permissões de disco/terminal do agente
+├── primordial_core/
+│   ├── __init__.py
+│   ├── memory_engine.py  # Gestão de RAG (JSON/Vetorial local com ChromaDB)
+│   ├── dual_agents.py    # Configuração do Estudante (Flash) e Professor (Pro)
+│   └── ethics_filter.py  # Script de validação do Axioma Zero
+├── primordial_skills.md  # Arquivo de âncora de habilidades cognitivas
+└── main.py               # Interface de execução e chat contínuo

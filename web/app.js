@@ -402,7 +402,7 @@ function renderConversasList() {
         conversa.respostas.forEach(r => {
             const sizeKB = (r.size / 1024).toFixed(1);
             listaArquivos.push(`
-                <li onclick="downloadFile('${conversa.session_id}', 'respostas', '${r.name}')">
+                <li onclick="viewFile('${conversa.session_id}', 'respostas', '${r.name}')">
                     <span class="file-name">📄 ${r.name}</span>
                     <div class="file-meta">
                         <span>${sizeKB} KB</span>
@@ -415,7 +415,7 @@ function renderConversasList() {
         conversa.programas.forEach(p => {
             const sizeKB = (p.size / 1024).toFixed(1);
             listaArquivos.push(`
-                <li onclick="downloadFile('${conversa.session_id}', 'programas', '${p.name}')">
+                <li onclick="viewFile('${conversa.session_id}', 'programas', '${p.name}')">
                     <span class="file-name">🐍 ${p.name}</span>
                     <div class="file-meta">
                         <span>${sizeKB} KB</span>
@@ -429,6 +429,7 @@ function renderConversasList() {
             <div class="conversa-item ${activeClass}" id="conv-${conversa.session_id}">
                 <div class="conversa-header" onclick="toggleConversa('${conversa.session_id}')">
                     <span class="title-text" title="${conversa.titulo}">💬 ${conversa.titulo}</span>
+                    <span class="delete-btn" onclick="deleteConversa(event, '${conversa.session_id}')" title="Excluir conversa">🗑️</span>
                     <span class="chevron">▼</span>
                 </div>
                 <ul class="conversa-files">
@@ -448,4 +449,61 @@ function toggleConversa(sessionId) {
 
 function downloadFile(sessionId, tipo, filename) {
     window.open(`/api/files/download/${sessionId}/${tipo}/${filename}`, "_blank");
+}
+
+async function viewFile(sessionId, tipo, filename) {
+    showLoading(`Lendo arquivo ${filename}...`);
+    try {
+        const response = await fetch(`/api/files/download/${sessionId}/${tipo}/${filename}`);
+        if (!response.ok) throw new Error("Erro ao baixar o arquivo.");
+        const text = await response.text();
+        
+        let formattedText = `### 📄 Visualizando: ${filename}\n\n---\n\n`;
+        if (filename.endsWith('.md')) {
+            formattedText += text;
+        } else {
+            const ext = filename.split('.').pop();
+            formattedText += `\`\`\`${ext}\n${text}\n\`\`\``;
+        }
+        
+        appendMessage("bot", formattedText);
+        hideLoading();
+    } catch (e) {
+        hideLoading();
+        appendMessage("system", `❌ Erro ao ler arquivo: ${e.message}`);
+    }
+}
+
+async function deleteConversa(event, sessionId) {
+    event.stopPropagation();
+    if (!confirm("Tem certeza que deseja excluir esta conversa permanentemente?")) return;
+    
+    try {
+        const response = await fetch(`/api/conversas/${sessionId}`, {
+            method: 'DELETE'
+        });
+        
+        if (response.ok) {
+            if (state.sessionId === sessionId) {
+                state.sessionId = "";
+                localStorage.removeItem("primordial_session_id");
+                DOM.sessionDisplay.textContent = "Sem sessão";
+                DOM.chatMessages.innerHTML = `
+                    <div class="message system-message">
+                        <div class="message-content">
+                            <h3>Conversa Excluída 🗑️</h3>
+                            <p>A sessão atual foi excluída. Inicie uma nova conversa.</p>
+                        </div>
+                    </div>
+                `;
+                clearCognitivePanel();
+            }
+            await loadFiles();
+        } else {
+            const data = await response.json();
+            alert("Erro ao excluir: " + (data.detail || "Desconhecido"));
+        }
+    } catch (e) {
+        alert("Erro de conexão ao tentar excluir a conversa.");
+    }
 }

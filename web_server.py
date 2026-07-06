@@ -3,6 +3,7 @@ import sys
 import uuid
 import datetime
 import re
+import shutil
 from fastapi import FastAPI, HTTPException, Body
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
@@ -144,6 +145,22 @@ async def download_file_endpoint(session_id: str, tipo: str, filename: str):
         raise HTTPException(status_code=404, detail="Arquivo não encontrado.")
         
     return FileResponse(path=filepath, filename=filename, media_type="application/octet-stream")
+
+@app.delete("/api/conversas/{session_id}")
+async def delete_conversa_endpoint(session_id: str):
+    """
+    Exclui permanentemente uma sessão de conversa e seus arquivos.
+    """
+    filepath = os.path.join("conversas", session_id)
+    if os.path.exists(filepath):
+        try:
+            shutil.rmtree(filepath)
+            if session_id in sessoes:
+                del sessoes[session_id]
+            return JSONResponse(content={"sucesso": True, "message": "Conversa deletada."})
+        except Exception as e:
+            raise HTTPException(status_code=500, detail=str(e))
+    raise HTTPException(status_code=404, detail="Sessão não encontrada.")
 
 # Cria a pasta de arquivos estáticos 'web/' se não existir
 os.makedirs("web", exist_ok=True)

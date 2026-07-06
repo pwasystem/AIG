@@ -222,6 +222,19 @@ body {
     padding-right: 8px;
 }
 
+.conversa-header .delete-btn {
+    font-size: 14px;
+    padding: 0 8px;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: all 0.2s ease;
+}
+
+.conversa-header .delete-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
 .conversa-files {
     display: none;
     list-style: none;
@@ -352,6 +365,17 @@ body {
 
 .message p:last-child {
     margin-bottom: 0;
+}
+
+.message ul, .message ol {
+    margin-left: 24px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.message li {
+    margin-bottom: 4px;
 }
 
 .message code {

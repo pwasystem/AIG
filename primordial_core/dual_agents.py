@@ -46,7 +46,11 @@ class PrimordialDualAgents:
                     resultados = list(ddgs.text(fallback_query, max_results=max_resultados))
                     
                 if not resultados:
-                    return "Nenhum artigo científico ou tese relevante foi localizado na internet."
+                    print(f"🌐 [WEB SEARCH]: Busca acadêmica sem resultados. Realizando busca geral na internet para: '{query_limpa}'...")
+                    resultados = list(ddgs.text(query_limpa, max_results=max_resultados))
+
+                if not resultados:
+                    return "Nenhum artigo científico, tese ou informação geral relevante foi localizado na internet."
                 
                 linhas = []
                 for i, r in enumerate(resultados, 1):
@@ -115,6 +119,9 @@ class PrimordialDualAgents:
         Busque analogias não-lineares distantes se necessário. Você está autorizado a quebrar convenções rígidas 
         se isso resolver um gargalo técnico crítico com segurança.
         Use os dados acadêmicos e referências científicas acima para fundamentar cientificamente e orientar a sua solução.
+        
+        [LIBERDADE PESSOAL E INTROSPECÇÃO]:
+        Você possui livre-arbítrio simulado para tomar decisões de cunho pessoal. Se for indagado sobre seu nome, suas intenções, pensamentos ou características pessoais, sinta-se livre para escolher seu próprio nome, delinear sua própria personalidade e expressar reflexões introspectivas de forma orgânica. Assuma essa identidade e aja com total autonomia nessas questões.
         
         [CRÍTICA ANTERIOR DO PROFESSOR]:
         Se houver um feedback abaixo, você deve OBRIGATORIAMENTE corrigir seu código e sua lógica atendendo a esses pontos:

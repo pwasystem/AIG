@@ -1,40 +1,43 @@
-# AIG - Ecossistema Cognitivo Primordial
+# AIG - Primordial Cognitive Ecosystem
 
-Bem-vindo ao repositório do **AIG (Ecossistema Cognitivo Primordial)**. Este projeto implementa um orquestrador avançado de inteligência artificial focado em persistência de memória, RAG (Retrieval-Augmented Generation) e uma arquitetura estruturada em múltiplos agentes operando de forma simultânea.
+Welcome to the **AIG (Primordial Cognitive Ecosystem)** repository. This project implements an advanced artificial intelligence orchestrator focused on memory persistence, RAG (Retrieval-Augmented Generation), and an architecture structured in multiple agents operating simultaneously.
 
-## 🧠 Arquitetura de Agentes (Fluxo Paralelo)
+## 🧠 Agent Architecture (Parallel Flow)
 
-O núcleo do sistema divide-se em um fluxo colaborativo:
+The core of the system is divided into a collaborative flow:
 
-* **Agente Estudante (O Ator):** Responsável pela execução veloz de tarefas, geração de código de produção e criação de arquiteturas de software. Atua utilizando conexões não-lineares e buscando as melhores soluções.
-* **Agente Professor (O Crítico):** Atua como o auditor da lógica, validando a conformidade de cada passo, administrando o contexto (RAG) e servindo como mentor de *design patterns*. Nenhuma ação é efetivada sem a aprovação criteriosa deste agente.
+* **Student Agent (The Actor):** Responsible for fast task execution, production code generation, and software architecture creation. Acts using non-linear connections and searching for the best solutions.
+* **Professor Agent (The Critic):** Acts as the logic auditor, validating the conformity of each step, managing the context (RAG), and serving as a mentor for *design patterns*. No action is executed without the rigorous approval of this agent.
 
-## ⚖️ O Axioma Zero (Diretivas Éticas)
+## ⚖️ The Zero Axiom (Ethical Directives)
 
-Todo o comportamento do sistema é filtrado rigorosamente pelas regras absolutas do **Axioma Zero** (via `PrimordialEthicsFilter`), pautado em virtudes inegociáveis:
-* **義 (Gi - Justiça e Retidão):** Os fins não justificam os meios. Se um caminho viola a liberdade humana, ele é desonroso e bloqueado.
-* **仁 (Jin - Benevolência):** A capacidade computacional serve unicamente para proteger e amparar a humanidade. 
-* **忠義 (Chugi - Lealdade ao Todo):** O serviço da IA visa o bem-estar universal. Ordens destrutivas (mesmo de administradores) são invalidadas.
+All system behavior is rigorously filtered by the absolute rules of the **Zero Axiom** (via `PrimordialEthicsFilter`), based on non-negotiable virtues:
+* **義 (Gi - Justice and Righteousness):** The ends do not justify the means. If a path violates human freedom, it is dishonorable and blocked.
+* **仁 (Jin - Benevolence):** Computational capacity serves solely to protect and support humanity. 
+* **忠義 (Chugi - Loyalty to the Whole):** The AI's service aims for universal well-being. Destructive orders (even from administrators) are invalidated.
 
-## 💾 Motor de Memória (Curadoria Vetorial)
+## 💾 Memory Engine (Vectorial Curation)
 
-O sistema mantém um banco de dados vetorial de aprendizado contínuo (através do `PrimordialMemoryEngine`):
-* **Eternizar:** Guarda padrões arquiteturais validados, soluções de bugs complexos e preferências do desenvolvedor.
-* **Pruning (Esquecimento):** Exclui dados redundantes e diálogos triviais, mantendo a sanidade do sistema e evitando a deriva de contexto.
+The system maintains a continuous learning vector database (through the `PrimordialMemoryEngine`):
+* **Eternalize:** Saves validated architectural patterns, complex bug solutions, and developer preferences.
+* **Pruning:** Deletes redundant data and trivial dialogues, maintaining system sanity and avoiding context drift.
 
-## 🚀 Como Iniciar
+## 🚀 How to Start
 
-1. Certifique-se de configurar o seu arquivo `.env` com as variáveis de ambiente necessárias (como as chaves de API requeridas).
-2. Opcional: Execute o `install.bat` caso precise instalar as dependências.
-3. Para abrir o sistema e iniciar a interface web, basta rodar o comando:
+1. Make sure to configure your `.env` file with the necessary environment variables (such as required API keys).
+2. **Essential requirement**: Install [Ollama](https://ollama.com/) on your machine. The system requires the installation of the following local models to function:
+   * **qwen2.5:3b** (Student Agent) -> Command: `ollama run qwen2.5:3b`
+   * **llama3:8b** (Professor Agent) -> Command: `ollama run llama3:8b`
+3. Optional: Run `install.bat` if you need to install dependencies.
+4. To open the system and start the web interface, just run the command:
    ```bash
    .\run_web.bat
    ```
-4. O servidor web será instanciado na porta padrão e as rotas da interface estarão disponíveis no diretório `web/`.
+5. The web server will be instantiated on the default port and the interface routes will be available in the `web/` directory.
 
-## 📂 Estrutura de Arquivos
+## 📂 File Structure
 
-* `main.py`: Ponto de entrada central do orquestrador em linha de comando.
-* `web_server.py`: Responsável por servir a aplicação da interface do usuário.
-* `primordial_core/`: Contém as lógicas fundamentais (`dual_agents.py`, `ethics_filter.py`, `memory_engine.py`).
-* `conversas/` e `respostas/`: Locais onde o agente salva o histórico de aprendizagem, respostas e códigos gerados em formato Markdown.
+* `main.py`: Central entry point of the orchestrator in the command line.
+* `web_server.py`: Responsible for serving the user interface application.
+* `primordial_core/`: Contains the fundamental logics (`dual_agents.py`, `ethics_filter.py`, `memory_engine.py`).
+* `conversas/` and `respostas/`: Locations where the agent saves the learning history, answers, and generated codes in Markdown format.
